@@ -6,6 +6,11 @@ pub struct Vocab {
 }
 
 impl Vocab {
+    /// Create a Vocabulary
+    /// 
+    /// # Arguments 
+    /// 
+    /// * `path` - Path to a raw text file to be parsed
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Vocab, std::io::Error> {
         let mut map = HashMap::new();
         let contents = std::fs::read_to_string(path)?;
@@ -22,7 +27,11 @@ impl Vocab {
         Ok(Vocab {map})
     }
 
-    // Parse the string, stripping punctuation and whitespace
+    /// Parse the string, stripping punctuation and whitespace
+    ///
+    /// # Arguments
+    /// 
+    /// * `text` - raw text String from which a vocabulary is built
     pub fn tokenize(text: String) -> Vec<String> {
         let tokens: Vec<String> = text.split(|c: char| !(c.is_alphanumeric() || c == '\''))
                                       .filter(|s| !s.is_empty())
@@ -32,7 +41,11 @@ impl Vocab {
         tokens
     }
 
-    // Load the vocabulary from disk
+    /// Load a previously built vocabulary from disk
+    ///
+    /// # Arguments
+    /// 
+    /// * `path` - Path to a saved vocabulary
     pub fn load<P: AsRef<Path>>(path: P) -> Result<Vocab, std::io::Error> {
         let mut map = HashMap::new(); 
         let contents = std::fs::read_to_string(path).expect("File not found!");
@@ -47,7 +60,13 @@ impl Vocab {
         Ok(Vocab {map})
     } 
 
-    // Write the vocabulary to disk
+    /// Write the vocabulary to disk
+    /// 
+    /// # Arguments 
+    /// 
+    /// * `&self` - reference to the vocabulary
+    /// 
+    /// * `path` - patht to save the vocabulary tsv file 
     pub fn write<P: AsRef<Path>>(&self, path: P) -> std::io::Result<()> {
         let mut contents = String::new();
         for (key, val) in &self.map {
@@ -60,6 +79,7 @@ impl Vocab {
         std::fs::write(path, contents)
     }
 
+    /// Get the number of vocabulary terms
     pub fn size(&self) -> usize {
         self.map.len()
     }
