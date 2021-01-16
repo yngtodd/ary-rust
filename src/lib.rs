@@ -67,15 +67,21 @@ impl Vocab {
 
     /// Write the vocabulary to disk
     /// 
+    /// Formatted as a tsv file, where each line is in the following format:
+    ///
+    /// term    token 
+    /// term    token
+    /// ...
+    ///
     /// # Arguments 
     /// 
     /// * `path` - path to save the vocabulary tsv file 
     pub fn write<P: AsRef<Path>>(&self, path: P) -> std::io::Result<()> {
         let mut contents = String::new();
-        for (key, val) in &self.map {
-            contents.push_str(key);
+        for (voc, tok) in &self.map {
+            contents.push_str(voc);
             contents.push('\t');
-            contents.push_str(&val.to_string());
+            contents.push_str(&tok.to_string());
             contents.push('\n');
         }
 
