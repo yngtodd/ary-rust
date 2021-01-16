@@ -69,8 +69,7 @@ impl Vocab {
     /// # Arguments 
     /// 
     /// * `&self` - reference to the vocabulary
-    /// 
-    /// * `path` - patht to save the vocabulary tsv file 
+    /// * `path` - path to save the vocabulary tsv file 
     pub fn write<P: AsRef<Path>>(&self, path: P) -> std::io::Result<()> {
         let mut contents = String::new();
         for (key, val) in &self.map {
@@ -88,7 +87,7 @@ impl Vocab {
         self.map.len()
     }
 
-    // Print the contents of the database
+    /// Print the contents of the database
     pub fn show(&self) {
         for (voc, tok) in &self.map {
             println!("  KEY: {}, VALUE: {}", voc, tok);
