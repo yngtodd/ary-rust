@@ -1,6 +1,10 @@
 use std::path::Path;
 use std::collections::HashMap;
 
+/// Vocabulary for NLP applications
+///
+/// This is a mapping from tokenized 
+/// vocabulary terms to integer tokens.
 pub struct Vocab {
     /// Mapping from tokens to integers
     map: HashMap<String, i32>,
