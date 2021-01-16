@@ -67,7 +67,7 @@ impl Vocab {
 
     /// Write the vocabulary to disk
     /// 
-    /// Saved as a tsv file, where each line is in the following format:
+    /// Saved as a `.tsv` file, where each line is in the following format:
     ///
     /// ```
     /// term    token 
