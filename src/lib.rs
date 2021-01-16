@@ -1,8 +1,8 @@
 use std::path::Path;
 use std::collections::HashMap;
 
-struct Vocab {
-    pub map: HashMap<String, i32>,
+pub struct Vocab {
+    map: HashMap<String, i32>,
 }
 
 impl Vocab {
@@ -33,7 +33,7 @@ impl Vocab {
     }
 
     // Load the vocabulary from disk
-    pub fn _load<P: AsRef<Path>>(path: P) -> Result<Vocab, std::io::Error> {
+    pub fn load<P: AsRef<Path>>(path: P) -> Result<Vocab, std::io::Error> {
         let mut map = HashMap::new(); 
         let contents = std::fs::read_to_string(path).expect("File not found!");
 
@@ -48,7 +48,7 @@ impl Vocab {
     } 
 
     // Write the vocabulary to disk
-    pub fn _write<P: AsRef<Path>>(&self, path: P) -> std::io::Result<()> {
+    pub fn write<P: AsRef<Path>>(&self, path: P) -> std::io::Result<()> {
         let mut contents = String::new();
         for (key, val) in &self.map {
             contents.push_str(key);
@@ -65,7 +65,7 @@ impl Vocab {
     }
 
     // Print the contents of the database
-    fn show(&self) {
+    pub fn show(&self) {
         for (voc, tok) in &self.map {
             println!("  KEY: {}, VALUE: {}", voc, tok);
         }
