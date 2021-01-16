@@ -19,7 +19,7 @@ impl Vocab {
         let mut tok = 0;
         for term in &tokens {
             if !map.contains_key(term) {
-                map.insert(term.to_lowercase(), tok);
+                map.insert(term.to_owned(), tok);
                 tok += 1;
             }
         }
@@ -27,7 +27,10 @@ impl Vocab {
         Ok(Vocab {map})
     }
 
-    /// Parse the string, stripping punctuation and whitespace
+    /// Tokenize raw text
+    ///
+    /// Strip whitespace, lowercase terms, and remove punctuation. 
+    /// We then return a vector of token Strings.
     ///
     /// # Arguments
     /// 
@@ -36,6 +39,7 @@ impl Vocab {
         let tokens: Vec<String> = text.split(|c: char| !(c.is_alphanumeric() || c == '\''))
                                       .filter(|s| !s.is_empty())
                                       .map(|s| s.to_string())
+                                      .map(|s| s.to_lowercase())
                                       .collect();
 
         tokens
