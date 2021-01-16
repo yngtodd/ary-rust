@@ -68,7 +68,6 @@ impl Vocab {
     /// 
     /// # Arguments 
     /// 
-    /// * `&self` - reference to the vocabulary
     /// * `path` - path to save the vocabulary tsv file 
     pub fn write<P: AsRef<Path>>(&self, path: P) -> std::io::Result<()> {
         let mut contents = String::new();
