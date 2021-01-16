@@ -1,7 +1,9 @@
 use std::path::Path;
 use std::collections::HashMap;
 
+/// Vocabulary for NLP applications
 pub struct Vocab {
+    /// Mapping from token to integer
     map: HashMap<String, i32>,
 }
 
