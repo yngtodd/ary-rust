@@ -69,9 +69,11 @@ impl Vocab {
     /// 
     /// Formatted as a tsv file, where each line is in the following format:
     ///
+    /// ```
     /// term    token 
     /// term    token
     /// ...
+    /// ```
     ///
     /// # Arguments 
     /// 
